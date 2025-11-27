@@ -15,15 +15,19 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import model.Empleado;
+import model.Animal;
+import model.Zoologico;
 
-
-public class PersistenciaEmpleados {
+/**
+ *
+ * @author rogel
+ */
+public class PersistenciaAnimales {
     
-    public static void guardarEmpleadosCSV(List<? extends Empleado> lista, String path) {
+    public static void guardarAnimalCSV(List<? extends Animal> lista, String path) {
         try(BufferedWriter escritor = new BufferedWriter(new FileWriter(path))) {
-            escritor.write(Empleado.toHeaderCSV());
-            for(Empleado e : lista) {
+            escritor.write(Animal.toHeaderCSV());
+            for(Animal e : lista) {
                 escritor.write(e.toCSV());
             }
         }catch(IOException ex) {
@@ -31,13 +35,13 @@ public class PersistenciaEmpleados {
         }   
     }
     
-    public static List<Empleado> cargarEmpleadosCSV(String path) {
-        List<Empleado> toReturn = new ArrayList<>();
+    public static List<Animal> cargarAnimalCSV(String path) {
+        List<Animal> toReturn = new ArrayList<>();
         try(BufferedReader lector = new BufferedReader(new FileReader(path))) {
             String linea;
             lector.readLine();
             while((linea = lector.readLine()) != null) {
-                toReturn.add(Empleado.fromCSV(linea));
+                toReturn.add(Animal.fromCSV(linea));
             }
         }catch(IOException ex) {
             System.out.println(ex.getMessage());
@@ -46,7 +50,7 @@ public class PersistenciaEmpleados {
         return toReturn;
     }
     
-    public static void serializarEmpleados(List<? extends  Empleado> lista, String path) {
+    public static void serializarAnimal(List<? extends  Animal> lista, String path) {
         try(ObjectOutputStream serializador = new ObjectOutputStream(new FileOutputStream(path))) {
             serializador.writeObject(lista);
         }catch(IOException ex) {
@@ -54,11 +58,11 @@ public class PersistenciaEmpleados {
         }
     }
     
-    public static List<Empleado> deserializarEmpleados(String path) {
-            List<Empleado> toReturn = null;
+    public static List<Animal> deserializarAnimal(String path) {
+            List<Animal> toReturn = null;
             
             try(ObjectInputStream deser = new ObjectInputStream(new FileInputStream(path))) {
-                toReturn = (List<Empleado>) deser.readObject();
+                toReturn = (List<Animal>) deser.readObject();
             }catch(IOException  | ClassNotFoundException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -68,5 +72,4 @@ public class PersistenciaEmpleados {
                 
                 
     }
-    
 }

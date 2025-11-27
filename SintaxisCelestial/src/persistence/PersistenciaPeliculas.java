@@ -15,15 +15,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import model.Empleado;
+import model.Pelicula;
 
 
-public class PersistenciaEmpleados {
-    
-    public static void guardarEmpleadosCSV(List<? extends Empleado> lista, String path) {
+public class PersistenciaPeliculas {
+     public static void guardarPeliCSV(List<? extends Pelicula> lista, String path) {
         try(BufferedWriter escritor = new BufferedWriter(new FileWriter(path))) {
-            escritor.write(Empleado.toHeaderCSV());
-            for(Empleado e : lista) {
+            escritor.write(Pelicula.toHeaderCSV());
+            for(Pelicula e : lista) {
                 escritor.write(e.toCSV());
             }
         }catch(IOException ex) {
@@ -31,13 +30,13 @@ public class PersistenciaEmpleados {
         }   
     }
     
-    public static List<Empleado> cargarEmpleadosCSV(String path) {
-        List<Empleado> toReturn = new ArrayList<>();
+    public static List<Pelicula> cargarPeliCSV(String path) {
+        List<Pelicula> toReturn = new ArrayList<>();
         try(BufferedReader lector = new BufferedReader(new FileReader(path))) {
             String linea;
             lector.readLine();
             while((linea = lector.readLine()) != null) {
-                toReturn.add(Empleado.fromCSV(linea));
+                toReturn.add(Pelicula.fromCSV(linea));
             }
         }catch(IOException ex) {
             System.out.println(ex.getMessage());
@@ -46,7 +45,7 @@ public class PersistenciaEmpleados {
         return toReturn;
     }
     
-    public static void serializarEmpleados(List<? extends  Empleado> lista, String path) {
+    public static void serializarPeli(List<? extends  Pelicula> lista, String path) {
         try(ObjectOutputStream serializador = new ObjectOutputStream(new FileOutputStream(path))) {
             serializador.writeObject(lista);
         }catch(IOException ex) {
@@ -54,11 +53,11 @@ public class PersistenciaEmpleados {
         }
     }
     
-    public static List<Empleado> deserializarEmpleados(String path) {
-            List<Empleado> toReturn = null;
+    public static List<Pelicula> deserializarPeli(String path) {
+            List<Pelicula> toReturn = null;
             
             try(ObjectInputStream deser = new ObjectInputStream(new FileInputStream(path))) {
-                toReturn = (List<Empleado>) deser.readObject();
+                toReturn = (List<Pelicula>) deser.readObject();
             }catch(IOException  | ClassNotFoundException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -68,5 +67,4 @@ public class PersistenciaEmpleados {
                 
                 
     }
-    
 }

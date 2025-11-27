@@ -8,9 +8,14 @@ package model;
  *
  * @author rogel
  */
-public enum TipoAilmentacion {
-    CARNIVORO,
-    HERVIBORO,
-    OMNIVORO,
-    INSECTIVORO;
+public enum Genero {
+    ACCION,
+    DRAMA,
+    COMEDIA,
+    DOCUMENTAL,
+    TERROR,
+    ANIMACION;
+    
+    
+    
 }

@@ -8,9 +8,9 @@ package model;
  *
  * @author rogel
  */
-public enum TipoAilmentacion {
-    CARNIVORO,
-    HERVIBORO,
-    OMNIVORO,
-    INSECTIVORO;
+public enum TipoAlimentacion {
+        CARNIVORO,
+        HERBIVORO,
+        OMNIVORO,
+        INSECTIVORO;
 }
