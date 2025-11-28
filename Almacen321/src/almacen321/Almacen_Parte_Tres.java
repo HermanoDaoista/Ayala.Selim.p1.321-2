@@ -37,6 +37,7 @@ List<Producto> filtrados = almacen.filtrar(p-> p.getPrecio() > 300000);
 for (Producto p : filtrados) {
 System.out.println(" - " + p);
 }
+
 System.out.println("\n=== Aplicar accion ===");
 almacen.paraCadaElemento(p -> {if(p.esTipo(Tipo.ROPA)) {p.aumentarPrecio(5);}});
 System.out.println("\n=== Transformar elementos ===");

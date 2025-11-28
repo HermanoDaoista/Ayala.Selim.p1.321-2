@@ -98,7 +98,7 @@ public class Almacen <T extends Comparable> implements Almacenable<T>, Iterable<
         return copia.iterator();
     }
 
-    private Iterator<T> iteratorNatural() {
+   private Iterator<T> iteratorNatural() {
         List<T> copia = new ArrayList<>(items);
         copia.sort(null);
         return copia.iterator();
@@ -106,10 +106,7 @@ public class Almacen <T extends Comparable> implements Almacenable<T>, Iterable<
     }
     
     public void mostrarContenidoNatural() {
-        Iterator<T> it = iteratorNatural();
-        while(it.hasNext()) {
-            System.out.println(it.next());
-        }
+        mostrarContenido(null);
     }
     
     public void mostrarContenido(Comparator<T> comp) {
